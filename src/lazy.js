@@ -1,3 +1,5 @@
+import { addTotalLoaded, showImageStats } from "./index";
+
 const isIntersecting = (entry) => {
   return entry.isIntersecting;
 };
@@ -12,6 +14,8 @@ const loadImage = (entry) => {
   image.alt = alt;
   // un-listen
   observer.unobserve(container);
+  addTotalLoaded();
+  showImageStats();
 };
 
 const observer = new IntersectionObserver((entries) => {

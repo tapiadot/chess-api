@@ -7,6 +7,25 @@ const btnGetStreamer = document.querySelector("#get-streamer");
 const btnStreamersCleaner = document.querySelector("#streamer-cleaner");
 const puzzlesNode = document.querySelector("#puzzles");
 
+let totalImg = 0;
+let totalLoaded = 0;
+
+function addTotalImg(num = 1) {
+  totalImg += num;
+}
+
+export function addTotalLoaded(num = 1) {
+  totalLoaded += num;
+}
+
+export function showImageStats() {
+  console.log(`⚪️ Total images: ${totalImg}`);
+  console.log(`🟣 Loaded images: ${totalLoaded}`);
+  console.log(
+    "----------------------------------------------------------------"
+  );
+}
+
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -47,6 +66,9 @@ function createImageNode(src, alt, width, height) {
   image.dataset.alt = alt;
 
   container.appendChild(image);
+
+  addTotalImg();
+  showImageStats();
 
   return container;
 }
@@ -118,6 +140,10 @@ function cleanOfCards(node) {
   children.forEach((child) => {
     const classes = [...child.classList];
     if (classes.includes("card")) {
+      const img = child.querySelector("img");
+      if (img.src) addTotalLoaded(-1);
+      addTotalImg(-1);
+      showImageStats();
       child.remove();
     }
   });
