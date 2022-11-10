@@ -4,6 +4,7 @@ import { registerImage } from "./lazy";
 
 const streamersNode = document.querySelector("#streamers");
 const btnGetStreamer = document.querySelector("#get-streamer");
+const btnStreamersCleaner = document.querySelector("#streamer-cleaner");
 const puzzlesNode = document.querySelector("#puzzles");
 
 function getRandomInt(min, max) {
@@ -58,23 +59,24 @@ async function displayRandomStreamer() {
   const url = streamer.url;
 
   // dom
-  const div = document.createElement("div");
-  const a = document.createElement("a");
-  a.href = url;
-  a.target = "_blank";
-  const img = createImageNode(
+  const image = createImageNode(
     avatar,
     `${username}'s Chess.com profile`,
     100,
     100
   );
+  image.classList.add("card");
+  const img = image.querySelector("img");
+  const a = document.createElement("a");
+  a.href = url;
+  a.target = "_blank";
   const p = document.createElement("p");
   p.textContent = username;
-  streamersNode.appendChild(div);
-  div.appendChild(a);
+  streamersNode.appendChild(image);
+  image.appendChild(a);
   a.appendChild(img);
-  registerImage(img);
-  div.appendChild(p);
+  image.appendChild(p);
+  registerImage(image);
 }
 
 async function displayPuzzles(num, delay) {
@@ -93,6 +95,7 @@ async function displayPuzzles(num, delay) {
         400,
         400
       );
+      image.classList.add("card");
       puzzlesNode.appendChild(image);
       registerImage(image);
 
@@ -110,7 +113,20 @@ async function displayPuzzles(num, delay) {
   loop();
 }
 
+function cleanOfCards(node) {
+  const children = [...node.children];
+  children.forEach((child) => {
+    const classes = [...child.classList];
+    if (classes.includes("card")) {
+      child.remove();
+    }
+  });
+}
+
 btnGetStreamer.addEventListener("click", displayRandomStreamer);
+btnStreamersCleaner.addEventListener("click", () => {
+  cleanOfCards(streamersNode);
+});
 
 displayRandomStreamer();
 displayPuzzles(1, 0);
