@@ -34,13 +34,14 @@ async function getRandomStreamer() {
   return streamers[ran];
 }
 
-function createImageNode(src, alt, width) {
+function createImageNode(src, alt, width, height) {
   const container = document.createElement("div");
   container.classList.add("p-4");
 
   const image = document.createElement("img");
-  image.classList.add("mx-auto");
+  image.classList.add("mx-auto", "gray-bg");
   image.width = width;
+  image.height = height;
   image.dataset.src = src;
   image.dataset.alt = alt;
 
@@ -61,7 +62,12 @@ async function displayRandomStreamer() {
   const a = document.createElement("a");
   a.href = url;
   a.target = "_blank";
-  const img = createImageNode(avatar, `${username}'s Chess.com profile`, 100);
+  const img = createImageNode(
+    avatar,
+    `${username}'s Chess.com profile`,
+    100,
+    100
+  );
   const p = document.createElement("p");
   p.textContent = username;
   streamersNode.appendChild(div);
@@ -84,6 +90,7 @@ async function displayPuzzles(num, delay) {
       const image = createImageNode(
         puzzleImg,
         "Random daily puzzle from chess.com",
+        400,
         400
       );
       puzzlesNode.appendChild(image);
