@@ -1,5 +1,7 @@
 "use strict";
 
+import { registerImage } from "./lazy";
+
 const streamersNode = document.querySelector("#streamers");
 const btnGetStreamer = document.querySelector("#get-streamer");
 const puzzlesNode = document.querySelector("#puzzles");
@@ -65,6 +67,7 @@ async function displayRandomStreamer() {
   streamersNode.appendChild(div);
   div.appendChild(a);
   a.appendChild(img);
+  registerImage(img);
   div.appendChild(p);
 }
 
@@ -84,6 +87,7 @@ async function displayPuzzles(num, delay) {
         400
       );
       puzzlesNode.appendChild(image);
+      registerImage(image);
 
       // desc
       const p = document.createElement("p");
