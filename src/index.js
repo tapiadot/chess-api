@@ -41,8 +41,8 @@ function createImageNode(src, alt, width) {
   const image = document.createElement("img");
   image.classList.add("mx-auto");
   image.width = width;
-  image.src = src;
-  image.alt = alt;
+  image.dataset.src = src;
+  image.dataset.alt = alt;
 
   container.appendChild(image);
 
