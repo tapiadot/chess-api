@@ -1,3 +1,6 @@
+.snowpack
+build
+
 # Logs
 logs
 *.log

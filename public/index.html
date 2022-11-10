@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Web site created using create-snowpack-app"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="%PUBLIC_URL%/_dist_/index.css"
+    />
+    <title>CHESS API</title>
+  </head>
+  <body>
+    <div class="py-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <p
+          class="
+            text-base
+            leading-6
+            text-indigo-600
+            font-semibold
+            tracking-wide
+            uppercase
+          "
+        >
+          Consuming API
+        </p>
+        <h3
+          class="
+            mt-2
+            text-3xl
+            leading-8
+            font-extrabold
+            tracking-tight
+            text-gray-900
+            sm:text-4xl sm:leading-10
+          "
+        >
+          Chess.com API
+        </h3>
+        <p class="mt-4 max-w-2xl text-xl leading-7 text-gray-500 mx-auto">
+          App to consume the public Chess.com API
+        </p>
+
+        <div id="streamers">
+          <p class="mt-4 max-w-2xl text-xl leading-7 text-gray-500 mx-auto">
+            Here are random
+            <a href="https://www.chess.com">Chess.com</a> streamers
+          </p>
+          <button
+            id="get-streamer"
+            class="my-4 p-4 px-6 bg-purple-500 hover:bg-gray-500"
+          >
+            Add streamer
+          </button>
+          <br />
+          <button
+            id="streamer-cleaner"
+            class="my-4 p-4 px-6 bg-gray-300 hover:bg-gray-500"
+          >
+            Clean
+          </button>
+        </div>
+
+        <div id="puzzles">
+          <p class="mt-4 max-w-2xl text-xl leading-7 text-gray-500 mx-auto">
+            Here are random daily puzzles from
+            <a href="https://www.chess.com/puzzles">www.chess.com/puzzles</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="%PUBLIC_URL%/_dist_/index.js"></script>
+  </body>
+</html>
