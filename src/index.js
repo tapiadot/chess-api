@@ -1,5 +1,6 @@
 "use strict";
 
+import h from "hyperscript";
 import { registerImage } from "./lazy";
 
 const streamersNode = document.querySelector("#streamers");
@@ -55,21 +56,15 @@ async function getRandomStreamer() {
 }
 
 function createImageNode(src, alt, width, height) {
-  const container = document.createElement("div");
-  container.classList.add("p-4");
-
-  const image = document.createElement("img");
-  image.classList.add("mx-auto", "gray-bg");
-  image.width = width;
-  image.height = height;
-  image.dataset.src = src;
-  image.dataset.alt = alt;
-
-  container.appendChild(image);
-
+  const image = h("img.mx-auto.gray-bg", {
+    width,
+    height,
+    "data-src": src,
+    "data-alt": alt,
+  });
+  const container = h("div.p-4.mt-3", image);
   addTotalImg();
   showImageStats();
-
   return container;
 }
 
@@ -89,11 +84,13 @@ async function displayRandomStreamer() {
   );
   image.classList.add("card");
   const img = image.querySelector("img");
-  const a = document.createElement("a");
-  a.href = url;
-  a.target = "_blank";
-  const p = document.createElement("p");
-  p.textContent = username;
+  const a = h("a", {
+    href: url,
+    target: "_blank",
+  });
+  const p = h("p", {
+    textContent: username,
+  });
   streamersNode.appendChild(image);
   image.appendChild(a);
   a.appendChild(img);
@@ -122,8 +119,9 @@ async function displayPuzzles(num, delay) {
       registerImage(image);
 
       // desc
-      const p = document.createElement("p");
-      p.textContent = puzzleDesc;
+      const p = h("p", {
+        textContent: puzzleDesc,
+      });
       image.insertBefore(p, image.firstChild);
 
       counter++;
